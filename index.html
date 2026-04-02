@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Clave Ali</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted playsinline loop controls>
+        <source src="video-clave-ali.mp4" type="video/mp4">
+        Tu navegador no soporta video.
+    </video>
+
+    <script>
+        // Forzar autoplay en móviles (por si el navegador lo bloquea)
+        const video = document.querySelector('video');
+        video.muted = true;
+        video.play().catch(() => {
+            // Si falla, intentamos de nuevo al hacer clic (pero como es NFC, casi siempre funciona)
+            document.body.addEventListener('click', () => video.play(), { once: true });
+        });
+    </script>
+</body>
+</html>
